@@ -1,0 +1,139 @@
+/* ============================================================
+   Caldwell Humane & Animal Services Consultants
+   Design system — refined editorial / institutional warmth
+   ============================================================ */
+
+:root {
+  /* Brand palette (pulled from his graphics) */
+  --navy:        #16243f;
+  --navy-deep:   #0f1b30;
+  --navy-soft:   #1e3052;
+  --olive:       #6e7a37;
+  --olive-deep:  #58622c;
+  --olive-soft:  #8a9650;
+  --gold:        #c6a14b;
+  --gold-soft:   #d8bd78;
+  --cream:       #f4f1e7;
+  --cream-warm:  #efe9da;
+  --paper:       #fbfaf5;
+  --ink:         #1b2230;
+  --ink-soft:    #45505f;
+  --line:        rgba(22, 36, 63, 0.12);
+  --line-light:  rgba(244, 241, 231, 0.16);
+
+  /* Type */
+  --serif:  "Fraunces", Georgia, serif;
+  --display:"Cinzel", "Fraunces", serif;
+  --sans:   "Hanken Grotesk", system-ui, sans-serif;
+
+  /* Rhythm */
+  --maxw: 1200px;
+  --gutter: clamp(1.25rem, 5vw, 4rem);
+  --section-y: clamp(4.5rem, 10vw, 8.5rem);
+
+  --shadow-soft: 0 18px 50px -28px rgba(15, 27, 48, 0.45);
+  --shadow-card: 0 24px 60px -34px rgba(15, 27, 48, 0.55);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--cream);
+  line-height: 1.6;
+  font-size: 1.02rem;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: inherit; text-decoration: none; }
+
+h1, h2, h3, h4 {
+  font-family: var(--serif);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: var(--navy);
+}
+
+.serif-italic { font-family: var(--serif); font-style: italic; font-weight: 400; }
+
+/* Layout helpers */
+.wrap { width: min(100% - 0px, var(--maxw)); margin-inline: auto; padding-inline: var(--gutter); }
+
+.eyebrow {
+  font-family: var(--display);
+  text-transform: uppercase;
+  letter-spacing: 0.34em;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--olive);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 1.5px;
+  background: var(--gold);
+}
+.eyebrow.center { justify-content: center; }
+.eyebrow.on-dark { color: var(--gold-soft); }
+
+/* Buttons */
+.btn {
+  --btn-bg: var(--navy);
+  --btn-fg: var(--cream);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 0.92rem;
+  letter-spacing: 0.01em;
+  padding: 0.95rem 1.7rem;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  border: 1.5px solid var(--btn-bg);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s, background .3s, color .3s;
+  position: relative;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-soft); }
+.btn .arrow { transition: transform .35s cubic-bezier(.2,.8,.2,1); }
+.btn:hover .arrow { transform: translateX(4px); }
+
+.btn--gold { --btn-bg: var(--gold); --btn-fg: var(--navy-deep); border-color: var(--gold); }
+.btn--ghost {
+  --btn-bg: transparent; --btn-fg: var(--navy);
+  border-color: rgba(22,36,63,0.28);
+}
+.btn--ghost:hover { background: var(--navy); color: var(--cream); border-color: var(--navy); }
+.btn--ghost-light {
+  --btn-bg: transparent; --btn-fg: var(--cream);
+  border-color: rgba(244,241,231,0.4);
+}
+.btn--ghost-light:hover { background: var(--cream); color: var(--navy); }
+
+/* Reveal-on-load + scroll — only hides when JS is present (no-JS sees everything) */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .9s cubic-bezier(.2,.8,.2,1), transform .9s cubic-bezier(.2,.8,.2,1);
+}
+.js [data-reveal].in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  [data-reveal] { opacity: 1; transform: none; }
+  html { scroll-behavior: auto; }
+}
