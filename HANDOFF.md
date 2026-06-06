@@ -20,8 +20,8 @@ npm run build    # static output to dist/  (deploys to Vercel like the other sit
 Header → Hero → values marquee → The Challenge (4 pressures) → Services (6 pillars) → Approach → About → CTA → Footer.
 
 ## Images
-- `public/images/hero-crop.jpg` — clean dog+cat I cropped out of his img1 poster (removed the baked-in text) for the hero.
-- `img1–img5` — his original graphics. img3 reused in the Approach section.
+- `public/images/hero-real.jpg` (hero) and `approach-real.jpg` (approach) — **real photographs from Pexels** (free for commercial use, no attribution required). Swapped in to replace the AI-rendered look.
+- `img1–img5` — his original AI brand graphics (kept in repo, currently unused on the page). Available if he wants them back anywhere.
 
 ## ⚠️ Placeholders to fill after he confirms details (search the code for `TODO`)
 1. **Founder bio** in the About section — the credibility anchor. Needs his real story.

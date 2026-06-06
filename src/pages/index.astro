@@ -114,11 +114,11 @@ const iconFor = (key: string): string => icons[key] ?? icons.strategy;
       <figure class="hero-figure" data-reveal style="transition-delay:.2s">
         <div class="hero-photo">
           <img
-            src="/images/hero-crop.jpg"
-            alt="A rescue dog and cat together — the animals at the heart of stronger welfare organizations"
+            src="/images/hero-real.jpg"
+            alt="A dog and cat resting together in the sun — the animals at the heart of stronger welfare organizations"
             loading="eager"
-            width="758"
-            height="940"
+            width="1100"
+            height="733"
           />
         </div>
         <figcaption class="hero-badge">
@@ -207,7 +207,7 @@ const iconFor = (key: string): string => icons[key] ?? icons.strategy;
   <section class="approach" id="approach">
     <div class="wrap approach-inner">
       <figure class="approach-figure" data-reveal>
-        <img src="/images/img3.jpg" alt="Caldwell brand: strong organizations are not built by accident — leadership, strong teams, greater impact" />
+        <img src="/images/approach-real.jpg" alt="A dog gently nuzzling a cat — the ripple effect of care across animals, people, and communities" width="825" height="550" />
       </figure>
       <div class="approach-copy">
         <p class="eyebrow" data-reveal>Our Approach</p>
@@ -321,7 +321,6 @@ const iconFor = (key: string): string => icons[key] ?? icons.strategy;
   </footer>
 </BaseLayout>
 
----
 <style>
   /* ---------- HEADER ---------- */
   .site-header {
@@ -439,7 +438,7 @@ const iconFor = (key: string): string => icons[key] ?? icons.strategy;
     content: ""; position: absolute; inset: 0;
     background: linear-gradient(160deg, transparent 55%, rgba(22,36,63,0.32));
   }
-  .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; }
   .hero-badge {
     position: absolute;
     left: -1.4rem; bottom: 1.8rem;
@@ -704,4 +703,3 @@ const iconFor = (key: string): string => icons[key] ?? icons.strategy;
     .br-d { display: none; }
   }
 </style>
----
