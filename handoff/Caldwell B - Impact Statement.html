@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caldwell Humane &amp; Animal Services Consultants</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:   oklch(21% 0.090 253);
+    --navy2:  oklch(27% 0.090 253);
+    --green:  oklch(36% 0.115 143);
+    --gold:   oklch(73% 0.130 78);
+    --cream:  oklch(97% 0.018 82);
+    --cream2: oklch(94% 0.021 80);
+    --cream3: oklch(90% 0.023 78);
+    --text:   oklch(20% 0.060 250);
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'Nunito', Georgia, sans-serif;
+    font-size: 16.5px;
+    line-height: 1.7;
+    text-wrap: pretty;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 56px; }
+
+  .label {
+    font-size: 10.5px; font-weight: 700; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--gold);
+    display: inline-flex; align-items: center; gap: 10px;
+    margin-bottom: 18px;
+  }
+  .label::after { content: ''; display: block; width: 36px; height: 1px; background: var(--gold); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .anim { opacity: 0; transform: translateY(18px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .anim.in { opacity: 1; transform: none; }
+    .anim.d1 { transition-delay: 0.1s; }
+    .anim.d2 { transition-delay: 0.2s; }
+    .anim.d3 { transition-delay: 0.3s; }
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--navy); border-bottom: 1px solid oklch(97% 0.018 82 / 0.1);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 2px 24px oklch(0% 0 0 / 0.35); }
+  .nav-inner {
+    display: flex; align-items: center; gap: 36px;
+    padding: 0 56px; height: 68px; max-width: 1440px; margin: 0 auto;
+  }
+  .wordmark { text-decoration: none; flex-shrink: 0; line-height: 1.1; }
+  .wm-main { display: block; font-family: 'Playfair Display', serif; font-size: 19px; letter-spacing: 0.08em; color: var(--cream); }
+  .wm-sub  { display: block; font-size: 9px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-top: 1px; }
+  .nav-links { list-style: none; display: flex; gap: 28px; margin-left: auto; }
+  .nav-links a { font-size: 13.5px; font-weight: 600; color: oklch(97% 0.018 82 / 0.72); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold); }
+  .btn-nav {
+    border: 1.5px solid var(--gold); color: var(--gold);
+    font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 700;
+    letter-spacing: 0.04em; padding: 9px 20px;
+    text-decoration: none; white-space: nowrap; flex-shrink: 0;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-nav:hover { background: var(--gold); color: var(--navy); }
+
+  /* HERO */
+  .hero { display: grid; grid-template-columns: 52fr 48fr; min-height: calc(100vh - 68px); background: var(--navy); }
+  .hero-text { padding: 72px 48px 72px 80px; display: flex; flex-direction: column; justify-content: center; }
+  .hero-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 28px; }
+  .hero-caldwell {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(64px, 9vw, 128px);
+    line-height: 0.88; color: var(--cream); letter-spacing: -0.01em; margin-bottom: 14px;
+  }
+  .hero-consult { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 30px; }
+  .hero-rule { width: 48px; height: 2px; background: var(--gold); margin-bottom: 28px; }
+  .hero-tagline {
+    font-family: 'Playfair Display', serif; font-style: italic;
+    font-size: clamp(20px, 2.6vw, 33px); line-height: 1.45;
+    color: var(--cream); opacity: 0.9; margin-bottom: 22px;
+  }
+  .hero-sub { font-size: 16px; line-height: 1.75; color: oklch(97% 0.018 82 / 0.68); max-width: 480px; margin-bottom: 36px; }
+  .hero-btns { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .btn-gold {
+    background: var(--gold); color: var(--navy);
+    font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 700;
+    letter-spacing: 0.04em; padding: 13px 26px; text-decoration: none; transition: opacity 0.2s;
+  }
+  .btn-gold:hover { opacity: 0.88; }
+  .btn-ghost-gold {
+    color: oklch(97% 0.018 82 / 0.72); font-family: 'Nunito', sans-serif; font-size: 14px;
+    font-weight: 700; letter-spacing: 0.04em; text-decoration: none;
+    border-bottom: 2px solid oklch(97% 0.018 82 / 0.28); padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-ghost-gold:hover { color: var(--gold); border-color: var(--gold); }
+
+  .hero-img { position: relative; overflow: hidden; background: var(--navy2); }
+  .hero-img img { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; display: block; }
+  .hero-img::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 120px; height: 100%;
+    background: linear-gradient(to right, var(--navy), transparent); z-index: 1; pointer-events: none;
+  }
+
+  /* TICKER */
+  .ticker { background: var(--navy); border-top: 1px solid oklch(97% 0.018 82 / 0.08); padding: 13px 0; overflow: hidden; white-space: nowrap; }
+  .ticker-track { display: inline-block; animation: ticker-go 35s linear infinite; }
+  .ticker-item { display: inline; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); padding: 0 36px; }
+  .ticker-sep { color: oklch(97% 0.018 82 / 0.2); font-size: 9px; }
+  @keyframes ticker-go { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* IMPACT STRIP */
+  .impact-strip { background: var(--cream); border-bottom: 1px solid var(--cream3); }
+  .impact-grid { display: grid; grid-template-columns: repeat(3, 1fr); max-width: 1440px; margin: 0 auto; }
+  .impact-item { padding: 52px 56px; border-right: 1px solid var(--cream3); text-align: center; }
+  .impact-item:last-child { border-right: none; }
+  .impact-num { font-family: 'Playfair Display', serif; font-size: 64px; line-height: 1; color: var(--navy); font-weight: 700; }
+  .impact-lbl { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green); margin-top: 10px; }
+  .impact-desc { font-size: 13.5px; color: var(--text); opacity: 0.62; margin-top: 6px; }
+
+  /* CHALLENGE */
+  .challenge { background: var(--cream2); padding: 96px 0; }
+  .ch-head { margin-bottom: 52px; }
+  .ch-head h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3.4vw, 48px); line-height: 1.2; color: var(--navy); max-width: 600px; margin-bottom: 18px; }
+  .ch-head p { font-size: 17px; opacity: 0.75; max-width: 560px; }
+  .ch-strip { display: grid; grid-template-columns: 72px 260px 1fr; gap: 28px; padding: 36px 0; border-top: 1px solid var(--cream3); align-items: start; }
+  .ch-strip:last-of-type { border-bottom: 1px solid var(--cream3); }
+  .ch-strip-num { font-family: 'Playfair Display', serif; font-size: 38px; color: var(--gold); line-height: 1.1; font-weight: 700; }
+  .ch-strip-title { font-family: 'Playfair Display', serif; font-size: 21px; color: var(--navy); padding-top: 6px; line-height: 1.3; }
+  .ch-strip-desc { font-size: 15.5px; padding-top: 6px; line-height: 1.72; }
+  .challenge-outro { margin-top: 56px; font-family: 'Playfair Display', serif; font-size: clamp(18px, 2vw, 27px); font-style: italic; color: var(--green); padding-left: 24px; border-left: 3px solid var(--gold); max-width: 720px; }
+
+  /* SERVICES */
+  .services { background: var(--cream); padding: 96px 0; }
+  .svc-head { margin-bottom: 56px; }
+  .svc-head h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3.4vw, 48px); line-height: 1.2; color: var(--navy); margin-bottom: 14px; }
+  .svc-head p { font-size: 17px; opacity: 0.75; max-width: 560px; }
+  .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--cream3); }
+  .svc-card { background: var(--navy); padding: 38px 30px; border-bottom: 3px solid var(--gold); transition: background 0.25s; cursor: default; }
+  .svc-card:hover { background: var(--navy2); }
+  .svc-card h3 { font-family: 'Playfair Display', serif; font-size: 21px; color: var(--gold); margin-bottom: 12px; line-height: 1.3; }
+  .svc-card p { font-size: 14.5px; line-height: 1.72; color: oklch(97% 0.018 82 / 0.76); }
+
+  /* PULL QUOTE */
+  .quote-sec { background: var(--navy); padding: 100px 0; text-align: center; }
+  .big-quote {
+    font-family: 'Playfair Display', serif; font-style: italic;
+    font-size: clamp(22px, 3.1vw, 44px); line-height: 1.45;
+    color: var(--cream); max-width: 880px; margin: 0 auto;
+    position: relative; padding: 0 32px;
+  }
+  .big-quote::before {
+    content: '\201C';
+    position: absolute; left: -8px; top: -0.45em;
+    font-size: 5em; line-height: 1; color: var(--gold); opacity: 0.2;
+    font-style: normal; font-family: 'Playfair Display', serif;
+  }
+
+  /* APPROACH — cream in B */
+  .approach { display: grid; grid-template-columns: 1fr 1fr; min-height: 580px; background: var(--cream); }
+  .approach-copy { padding: 80px 72px; display: flex; flex-direction: column; justify-content: center; order: 1; }
+  .approach-img { position: relative; overflow: hidden; background: var(--cream3); order: 2; }
+  .approach-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .approach-copy h2 { font-family: 'Playfair Display', serif; font-size: clamp(26px, 2.9vw, 42px); line-height: 1.25; color: var(--navy); margin-bottom: 28px; }
+  .approach-bullets { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; }
+  .approach-bullets li { font-size: 15.5px; padding-left: 18px; position: relative; }
+  .approach-bullets li::before { content: ''; position: absolute; left: 0; top: 11px; width: 8px; height: 2px; background: var(--green); }
+  .approach-bullets strong { color: var(--navy); }
+  .approach-quote { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(14px, 1.6vw, 20px); line-height: 1.55; color: var(--green); border-left: 2px solid var(--gold); padding-left: 20px; }
+
+  /* ABOUT — navy in B */
+  .about { background: var(--navy); padding: 96px 0; }
+  .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 72px; align-items: start; }
+  .about-copy h2 { font-family: 'Playfair Display', serif; font-size: clamp(26px, 3.1vw, 44px); line-height: 1.2; color: var(--cream); margin-bottom: 22px; }
+  .about-copy p { font-size: 17px; line-height: 1.75; color: oklch(97% 0.018 82 / 0.8); margin-bottom: 20px; }
+  .about-link { display: inline-block; margin-top: 8px; font-size: 14px; font-weight: 700; color: var(--gold); text-decoration: none; border-bottom: 2px solid var(--gold); padding-bottom: 2px; }
+
+  /* FOUNDER CARD */
+  .founder-card { background: oklch(97% 0.018 82 / 0.05); border: 1px solid oklch(97% 0.018 82 / 0.12); }
+  .founder-img { width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: center 12%; display: block; }
+  .founder-info { padding: 22px 26px 26px; }
+  .founder-name { font-family: 'Playfair Display', serif; font-size: 21px; color: var(--cream); margin-bottom: 4px; }
+  .founder-title { font-size: 11px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: var(--gold); }
+  .founder-cred { font-size: 13px; color: oklch(97% 0.018 82 / 0.45); margin-top: 8px; line-height: 1.5; }
+
+  /* ABOUT STATS STRIP */
+  .about-stats { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 72px; padding-top: 52px; border-top: 1px solid oklch(97% 0.018 82 / 0.12); }
+  .astat { padding-right: 48px; border-right: 1px solid oklch(97% 0.018 82 / 0.12); }
+  .astat:nth-child(2) { padding-left: 48px; padding-right: 48px; }
+  .astat:last-child { border-right: none; padding-left: 48px; padding-right: 0; }
+  .astat-lbl { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .astat-val { font-family: 'Playfair Display', serif; font-size: 56px; color: var(--cream); line-height: 1; }
+  .astat-desc { font-size: 13px; color: oklch(97% 0.018 82 / 0.5); margin-top: 6px; line-height: 1.5; }
+
+  /* CTA — cream in B */
+  .cta-sec { background: var(--cream2); padding: 96px 0; text-align: center; }
+  .cta-sec h2 { font-family: 'Playfair Display', serif; font-size: clamp(26px, 3.4vw, 50px); line-height: 1.2; color: var(--navy); margin-bottom: 16px; max-width: 680px; margin-left: auto; margin-right: auto; }
+  .cta-sec p { font-size: 17px; color: var(--text); opacity: 0.72; max-width: 520px; margin: 0 auto 44px; }
+  .cta-btns { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; }
+  .btn-navy { background: var(--navy); color: var(--cream); font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.04em; padding: 13px 30px; text-decoration: none; transition: background 0.2s; }
+  .btn-navy:hover { background: var(--green); }
+  .btn-outline-navy { color: var(--navy); font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.04em; padding: 13px 30px; text-decoration: none; border: 2px solid oklch(21% 0.09 253 / 0.28); transition: border-color 0.2s; }
+  .btn-outline-navy:hover { border-color: var(--navy); }
+
+  /* FOOTER */
+  footer { background: var(--navy); color: var(--cream); padding: 60px 0 36px; }
+  .ft-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; padding-bottom: 44px; border-bottom: 1px solid oklch(97% 0.018 82 / 0.1); margin-bottom: 28px; }
+  .ft-brand .wm-main { font-size: 22px; }
+  .ft-tagline { font-size: 13.5px; color: oklch(97% 0.018 82 / 0.52); margin-top: 16px; max-width: 260px; line-height: 1.65; }
+  .ft-col h4 { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; }
+  .ft-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .ft-col a { font-size: 14px; color: oklch(97% 0.018 82 / 0.65); text-decoration: none; transition: color 0.2s; }
+  .ft-col a:hover { color: var(--gold); }
+  .ft-bottom { display: flex; justify-content: space-between; }
+  .ft-copy { font-size: 12.5px; color: oklch(97% 0.018 82 / 0.35); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <div class="nav-inner">
+    <a href="#" class="wordmark">
+      <span class="wm-main">CALDWELL</span>
+      <span class="wm-sub">Humane &amp; Animal Services Consultants</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#challenge">The Challenge</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#approach">Approach</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+    <a href="#contact" class="btn-nav">Book a Consultation →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow">Humane &amp; Animal Services Consulting</p>
+    <p class="hero-caldwell">CALDWELL</p>
+    <p class="hero-consult">Humane &amp; Animal Services Consultants</p>
+    <div class="hero-rule"></div>
+    <p class="hero-tagline">Stronger organizations.<br>Safer communities.<br>More lives saved.</p>
+    <p class="hero-sub">We help animal welfare organizations lead with clarity, operate with purpose, and create lasting impact — for animals, for people, and for the communities they serve.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-gold">Book a Consultation →</a>
+      <a href="#services" class="btn-ghost-gold">Explore Our Services</a>
+    </div>
+  </div>
+  <div class="hero-img">
+    <img src="https://caldwell.rankrgv.com/images/hero.jpg" alt="A dog and cat — animals at the heart of stronger welfare organizations" loading="eager">
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item">Mission Focused</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">People Centered</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">Operations Excellence</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">Meaningful Impact</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">Mission Focused</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">People Centered</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">Operations Excellence</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">Meaningful Impact</span><span class="ticker-sep">◆</span>
+  </div>
+</div>
+
+<!-- IMPACT STRIP -->
+<div class="impact-strip">
+  <div class="impact-grid">
+    <div class="impact-item anim">
+      <p class="impact-num">20+</p>
+      <p class="impact-lbl">Years of Experience</p>
+      <p class="impact-desc">Executive leadership in animal welfare &amp; municipal government</p>
+    </div>
+    <div class="impact-item anim d1">
+      <p class="impact-num">30+</p>
+      <p class="impact-lbl">Organizations Supported</p>
+      <p class="impact-desc">Shelters, humane societies, and animal welfare agencies</p>
+    </div>
+    <div class="impact-item anim d2">
+      <p class="impact-num">$1M+</p>
+      <p class="impact-lbl">Grant Dollars Secured</p>
+      <p class="impact-desc">Funding that sustains the mission long-term</p>
+    </div>
+  </div>
+</div>
+
+<!-- CHALLENGE -->
+<section class="challenge" id="challenge">
+  <div class="container">
+    <div class="ch-head anim">
+      <p class="label">The Challenge</p>
+      <h2>Animal welfare organizations face increasing operational challenges.</h2>
+      <p>The landscape is evolving. The pressures are real. The organizations that thrive embrace strategy, innovation, and real operational change.</p>
+    </div>
+    <div class="ch-strip anim">
+      <p class="ch-strip-num">01</p>
+      <p class="ch-strip-title">Staffing Shortages</p>
+      <p class="ch-strip-desc">Recruiting and retaining skilled, compassionate teams in a field that runs on heart — and runs people thin.</p>
+    </div>
+    <div class="ch-strip anim d1">
+      <p class="ch-strip-num">02</p>
+      <p class="ch-strip-title">Financial Pressures</p>
+      <p class="ch-strip-desc">Rising costs and limited resources strain sustainability and force impossible trade-offs.</p>
+    </div>
+    <div class="ch-strip anim d2">
+      <p class="ch-strip-num">03</p>
+      <p class="ch-strip-title">Community Expectations</p>
+      <p class="ch-strip-desc">Communities expect more services, more transparency, and faster response than ever before.</p>
+    </div>
+    <div class="ch-strip anim d3">
+      <p class="ch-strip-num">04</p>
+      <p class="ch-strip-title">Rising Intake Numbers</p>
+      <p class="ch-strip-desc">More animals in need than there are resources available to care for them.</p>
+    </div>
+    <p class="challenge-outro anim">The future of animal welfare leadership will require adaptability and vision. That's where we come in.</p>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="svc-head anim">
+      <p class="label">What We Do</p>
+      <h2>Six ways we strengthen the organizations that protect animals.</h2>
+      <p>Every engagement is tailored to where your organization is today — and where it needs to go.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card anim">
+        <h3>Leadership Development</h3>
+        <p>Building confident, accountable leaders and boards who can carry the mission forward — long after the engagement ends.</p>
+      </div>
+      <div class="svc-card anim d1">
+        <h3>Operational Excellence</h3>
+        <p>Tightening the day-to-day systems — intake, staffing, workflows — so your team spends less time firefighting and more time saving lives.</p>
+      </div>
+      <div class="svc-card anim d2">
+        <h3>Strategy &amp; Solutions</h3>
+        <p>Clear-eyed planning grounded in your reality. Where you are, where you're going, and the practical path between the two.</p>
+      </div>
+      <div class="svc-card anim d1">
+        <h3>Compassion &amp; Community</h3>
+        <p>Programs and partnerships that deepen community trust, expand your reach, and keep more animals in safe homes.</p>
+      </div>
+      <div class="svc-card anim d2">
+        <h3>Impact &amp; Sustainability</h3>
+        <p>Turning good intentions into measurable outcomes — and structures that keep those outcomes going year after year.</p>
+      </div>
+      <div class="svc-card anim d3">
+        <h3>Grant &amp; Funding Development</h3>
+        <p>Finding the right funding, telling the story that wins it, and building the reporting that keeps funders coming back.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PULL QUOTE -->
+<section class="quote-sec">
+  <div class="container">
+    <blockquote class="big-quote anim">People may forget specific decisions. They rarely forget how leaders made them feel.</blockquote>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section class="approach" id="approach">
+  <div class="approach-copy anim">
+    <p class="label">Our Approach</p>
+    <h2>Strong organizations are not built by accident.</h2>
+    <ul class="approach-bullets">
+      <li><strong>Clear expectations.</strong> Everyone knows what good looks like.</li>
+      <li><strong>Consistent communication.</strong> Trust is built in the everyday.</li>
+      <li><strong>Mission alignment.</strong> Every decision points back to the work.</li>
+    </ul>
+    <blockquote class="approach-quote">Built through intentional leadership, accountability, operational clarity, and a culture that empowers people to succeed.</blockquote>
+  </div>
+  <div class="approach-img">
+    <img src="https://caldwell.rankrgv.com/images/approach-real.jpg" alt="A dog nuzzling a cat — the ripple effect of care" loading="lazy">
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-copy anim">
+        <p class="label">About Caldwell</p>
+        <h2>Leadership built from the ground up — and proven in the field.</h2>
+        <p>Caldwell Humane &amp; Animal Services Consultants was founded on a simple belief: that the animals and communities we care about are best served by organizations that are healthy, well-led, and built to last.</p>
+        <p>Our founder brings 20+ years of experience driving operational excellence, organizational transformation, and strategic growth across municipal government, animal welfare, procurement, education, and finance. This is leadership that has been tested at every level of the field — and the results to show for it.</p>
+        <p>This practice exists to bring that caliber of expertise directly to the organizations doing the hardest and most important work.</p>
+        <a href="#contact" class="about-link">Start the Conversation →</a>
+      </div>
+      <div class="founder-card anim d1">
+        <img class="founder-img"
+          src="https://s.yimg.com/lo/mysterio/api/f39851b647569d1fd354b0e3fc8d1fc3970a2114a8a02ae9e86b7a249f74e26a/lightyear_networkapi/resizefill_w750_h422;quality_80;format_webp/https:%2F%2Fmedia.zenfs.com%2Fen%2Fkiii_tegna_articles_597%2F3ca16e93838265e29351f717927347bb"
+          alt="Founder, Caldwell Humane &amp; Animal Services Consultants"
+          loading="lazy">
+        <div class="founder-info">
+          <p class="founder-name">[Founder Name]</p>
+          <p class="founder-title">Founder &amp; Principal Consultant</p>
+          <p class="founder-cred">20+ years · Animal Welfare · Municipal Government<br>Organizational Transformation · Strategic Growth</p>
+        </div>
+      </div>
+    </div>
+    <div class="about-stats anim">
+      <div class="astat">
+        <p class="astat-lbl">Experience</p>
+        <p class="astat-val">20+</p>
+        <p class="astat-desc">Years of executive leadership in animal welfare and public service</p>
+      </div>
+      <div class="astat">
+        <p class="astat-lbl">Organizations</p>
+        <p class="astat-val">30+</p>
+        <p class="astat-desc">Shelters, humane societies, and animal welfare agencies supported</p>
+      </div>
+      <div class="astat">
+        <p class="astat-lbl">Funding Secured</p>
+        <p class="astat-val">$1M+</p>
+        <p class="astat-desc">In grant dollars secured to sustain mission-driven organizations</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec" id="contact">
+  <div class="container">
+    <h2>Ready to build a stronger organization?</h2>
+    <p>Tell us where your organization is today. We'll show you what's possible — and the practical next step to get there.</p>
+    <div class="cta-btns">
+      <a href="/cdn-cgi/l/email-protection#167e737a7a795675777a7261737a7a7e637b77787375797865637a62777862653875797b" class="btn-navy">Book a Consultation →</a>
+      <a href="#services" class="btn-outline-navy">See How We Help</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <a href="#" class="wordmark">
+          <span class="wm-main">CALDWELL</span>
+          <span class="wm-sub">Humane &amp; Animal Services Consultants</span>
+        </a>
+        <p class="ft-tagline">Stronger Organizations. Safer Communities. More Lives Saved.</p>
+      </div>
+      <div class="ft-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#challenge">The Challenge</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#approach">Approach</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="/cdn-cgi/l/email-protection#78101d141417381b19141c0f1d1414100d1519161d1b17160b0d140c19160c0b561b1715">Email Us</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#contact">Book a Consultation</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <p class="ft-copy">© 2026 Caldwell Humane &amp; Animal Services Consultants LLC. Built with purpose.</p>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Scroll animations
+  if ('IntersectionObserver' in window) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+    document.querySelectorAll('.anim').forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.92) el.classList.add('in');
+      else obs.observe(el);
+    });
+  } else {
+    document.querySelectorAll('.anim').forEach(el => el.classList.add('in'));
+  }
+
+  // Nav shadow on scroll
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 10);
+  }, { passive: true });
+</script>
+</body>
+</html>

@@ -1,705 +1,365 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const services = [
-  {
-    title: "Leadership Development",
-    body: "Building confident, accountable leaders and boards who can carry the mission forward — long after the engagement ends.",
-    icon: "leadership",
-  },
-  {
-    title: "Operational Excellence",
-    body: "Tightening the day-to-day systems — intake, staffing, workflows — so your team spends less time firefighting and more time saving lives.",
-    icon: "ops",
-  },
-  {
-    title: "Strategy & Solutions",
-    body: "Clear-eyed planning grounded in your reality. Where you are, where you're going, and the practical path between the two.",
-    icon: "strategy",
-  },
-  {
-    title: "Compassion & Community",
-    body: "Programs and partnerships that deepen community trust, expand your reach, and keep more animals in safe homes.",
-    icon: "community",
-  },
-  {
-    title: "Impact & Sustainability",
-    body: "Turning good intentions into measurable outcomes — and structures that keep those outcomes going year after year.",
-    icon: "impact",
-  },
-  {
-    title: "Grant & Funding Development",
-    body: "Finding the right funding, telling the story that wins it, and building the reporting that keeps funders coming back.",
-    icon: "funding",
-  },
-];
+const EMAIL = "hello@caldwellhumaneconsultants.com";
+const LINKEDIN_COMPANY =
+  "https://www.linkedin.com/company/caldwell-humane-animal-services-consultants/";
+const LINKEDIN_FOUNDER =
+  "https://www.linkedin.com/in/dr-antonio-l-caldwell-dba-cawa-5a68a5281/";
 
 const challenges = [
   {
+    num: "01",
     title: "Staffing Shortages",
-    body: "Recruiting and retaining skilled, compassionate teams in a field that runs on heart and runs people thin.",
+    body:
+      "Recruiting and retaining skilled, compassionate teams in a field that runs on heart — and runs people thin.",
   },
   {
+    num: "02",
     title: "Financial Pressures",
-    body: "Rising costs and limited resources strain sustainability — and force impossible trade-offs.",
+    body:
+      "Rising costs and limited resources strain sustainability and force impossible trade-offs.",
   },
   {
+    num: "03",
     title: "Community Expectations",
-    body: "Communities expect more services, more transparency, and faster response than ever before.",
+    body:
+      "Communities expect more services, more transparency, and faster response than ever before.",
   },
   {
+    num: "04",
     title: "Rising Intake Numbers",
     body: "More animals in need than there are resources available to care for them.",
   },
 ];
 
-// Inline stroke icons (24x24, currentColor) — keyed to each service
-const icons: Record<string, string> = {
-  leadership: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.2 4.5 5 .7-3.6 3.5.9 5L12 14.8 7.5 16.7l.9-5L4.8 8.2l5-.7z"/></svg>`,
-  ops: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v2.6M12 18.9v2.6M21.5 12h-2.6M5.1 12H2.5M18.7 5.3l-1.8 1.8M7.1 16.9l-1.8 1.8M18.7 18.7l-1.8-1.8M7.1 7.1L5.3 5.3"/></svg>`,
-  strategy: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg>`,
-  community: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5l-1.1-1C6.8 15.9 4 13.4 4 10.3 4 8 5.9 6.2 8.1 6.2c1.3 0 2.6.6 3.4 1.6.8-1 2.1-1.6 3.4-1.6 2.2 0 4.1 1.8 4.1 4.1 0 3.1-2.8 5.6-6.9 9.2z"/></svg>`,
-  impact: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5M4 19h16M8 19v-6M12 19V9M16 19v-9M20 7l-4 3-4-4-4 3"/></svg>`,
-  funding: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="3.5" width="15" height="17" rx="2"/><path d="M8.5 8h7M8.5 12h7M8.5 16h4"/></svg>`,
-};
-const iconFor = (key: string): string => icons[key] ?? icons.strategy;
+const services = [
+  {
+    title: "Leadership Development",
+    body:
+      "Building confident, accountable leaders and boards who can carry the mission forward — long after the engagement ends.",
+  },
+  {
+    title: "Operational Excellence",
+    body:
+      "Tightening the day-to-day systems — intake, staffing, workflows — so your team spends less time firefighting and more time saving lives.",
+  },
+  {
+    title: "Strategy & Solutions",
+    body:
+      "Clear-eyed planning grounded in your reality. Where you are, where you're going, and the practical path between the two.",
+  },
+  {
+    title: "Compassion & Community",
+    body:
+      "Programs and partnerships that deepen community trust, expand your reach, and keep more animals in safe homes.",
+  },
+  {
+    title: "Impact & Sustainability",
+    body:
+      "Turning good intentions into measurable outcomes — and structures that keep those outcomes going year after year.",
+  },
+  {
+    title: "Grant & Funding Development",
+    body:
+      "Finding the right funding, telling the story that wins it, and building the reporting that keeps funders coming back.",
+  },
+];
+
+// Representative figures — NOT yet verified. Marked with ** + footnote per honest-proof rule.
+const stats = [
+  { val: "20+", lbl: "Years of Experience", desc: "Executive leadership in animal welfare & municipal government" },
+  { val: "30+", lbl: "Organizations Supported", desc: "Shelters, humane societies, and animal welfare agencies" },
+  { val: "$1M+", lbl: "Grant Dollars Secured", desc: "Funding that sustains the mission long-term" },
+];
 ---
 
 <BaseLayout>
-  <!-- ============ HEADER ============ -->
-  <header class="site-header" data-header>
-    <div class="wrap header-inner">
-      <a href="/" class="wordmark" aria-label="Caldwell Humane & Animal Services Consultants">
-        <span class="wordmark-name">Caldwell</span>
-        <span class="wordmark-sub">Humane &amp; Animal Services</span>
+  <!-- ============ NAV ============ -->
+  <nav class="site-nav" id="main-nav">
+    <div class="nav-inner">
+      <a href="#hero" class="wordmark" aria-label="Caldwell Humane & Animal Services Consultants">
+        <span class="wm-main">CALDWELL</span>
+        <span class="wm-sub">Humane &amp; Animal Services Consultants</span>
       </a>
-      <nav class="nav" aria-label="Primary">
-        <a href="#challenge">The Challenge</a>
-        <a href="#services">Services</a>
-        <a href="#approach">Approach</a>
-        <a href="#about">About</a>
-      </nav>
-      <a href="#contact" class="btn btn--gold header-cta">
-        Book a Consultation <span class="arrow">&rarr;</span>
-      </a>
+      <ul class="nav-links">
+        <li><a href="#challenge">The Challenge</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#approach">Approach</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+      <a href="#contact" class="btn-nav">Book a Consultation →</a>
     </div>
-  </header>
+  </nav>
 
   <!-- ============ HERO ============ -->
-  <section class="hero">
-    <div class="hero-grain" aria-hidden="true"></div>
-    <div class="wrap hero-inner">
-      <div class="hero-copy">
-        <p class="eyebrow" data-reveal>Humane &amp; Animal Services Consulting</p>
-        <h1 class="hero-title" data-reveal style="transition-delay:.08s">
-          Stronger organizations.<br />
-          Safer communities.<br />
-          <span class="serif-italic accent-line">More lives saved.</span>
-        </h1>
-        <p class="hero-lede" data-reveal style="transition-delay:.16s">
-          We help animal welfare organizations lead with clarity, operate with
-          purpose, and create lasting impact — for animals, for people, and for
-          the communities they serve.
-        </p>
-        <div class="hero-cta" data-reveal style="transition-delay:.24s">
-          <a href="#contact" class="btn btn--gold">Book a Consultation <span class="arrow">&rarr;</span></a>
-          <a href="#services" class="btn btn--ghost">Explore Our Services</a>
-        </div>
-        <p class="hero-foot" data-reveal style="transition-delay:.32s">
-          <span class="paw" aria-hidden="true">&#128062;</span>
-          Built on experience. Driven by purpose.
-        </p>
+  <section class="hero" id="hero">
+    <div class="hero-text">
+      <p class="hero-eyebrow">Humane &amp; Animal Services Consulting</p>
+      <p class="hero-caldwell">CALDWELL</p>
+      <p class="hero-consult">Humane &amp; Animal Services Consultants</p>
+      <div class="hero-rule"></div>
+      <p class="hero-tagline">
+        Stronger organizations.<br />Safer communities.<br />More lives saved.
+      </p>
+      <p class="hero-sub">
+        We help animal welfare organizations lead with clarity, operate with purpose, and create
+        lasting impact — for animals, for people, and for the communities they serve.
+      </p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-gold">Book a Consultation →</a>
+        <a href="#services" class="btn-ghost-gold">Explore Our Services</a>
       </div>
-
-      <figure class="hero-figure" data-reveal style="transition-delay:.2s">
-        <div class="hero-photo">
-          <img
-            src="/images/hero.jpg"
-            alt="A dog and cat sitting together, looking toward the camera — the animals at the heart of stronger welfare organizations"
-            loading="eager"
-            width="1500"
-            height="1000"
-          />
-        </div>
-        <figcaption class="hero-badge">
-          <span class="hero-badge-k">For animals.</span>
-          <span class="hero-badge-k">For people.</span>
-          <span class="hero-badge-k">For communities.</span>
-        </figcaption>
-      </figure>
+    </div>
+    <!-- TEMP IMAGE: placeholder dog+cat hero, pending final select -->
+    <div class="hero-img">
+      <img
+        src="/images/hero.jpg"
+        alt="A dog and cat together — the animals at the heart of stronger welfare organizations"
+        loading="eager"
+        width="1500"
+        height="1000"
+      />
     </div>
   </section>
 
-  <!-- ============ MARQUEE / VALUES STRIP ============ -->
-  <div class="values-strip" aria-hidden="true">
-    <div class="values-track">
-      {Array.from({ length: 2 }).map(() => (
-        <span class="values-set">
-          <span>Mission Focused</span><span class="dot">&#128062;</span>
-          <span>People Centered</span><span class="dot">&#128062;</span>
-          <span>Operations Excellence</span><span class="dot">&#128062;</span>
-          <span>Meaningful Impact</span><span class="dot">&#128062;</span>
-        </span>
-      ))}
+  <!-- ============ TICKER ============ -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      {
+        Array.from({ length: 2 }).map(() => (
+          <>
+            <span class="ticker-item">Mission Focused</span><span class="ticker-sep">◆</span>
+            <span class="ticker-item">People Centered</span><span class="ticker-sep">◆</span>
+            <span class="ticker-item">Operations Excellence</span><span class="ticker-sep">◆</span>
+            <span class="ticker-item">Meaningful Impact</span><span class="ticker-sep">◆</span>
+          </>
+        ))
+      }
     </div>
   </div>
 
-  <!-- ============ THE CHALLENGE ============ -->
+  <!-- ============ IMPACT STRIP ============ -->
+  <div class="impact-strip">
+    <div class="impact-grid">
+      {
+        stats.map((s, i) => (
+          <div class={`impact-item anim${i ? ` d${i}` : ""}`}>
+            <p class="impact-num">{s.val}<span class="stat-mark">**</span></p>
+            <p class="impact-lbl">{s.lbl}</p>
+            <p class="impact-desc">{s.desc}</p>
+          </div>
+        ))
+      }
+    </div>
+    <p class="impact-note stat-note">
+      <span class="stat-mark">**</span> Representative figures — verification in progress.
+    </p>
+  </div>
+
+  <!-- ============ CHALLENGE ============ -->
   <section class="challenge" id="challenge">
-    <div class="wrap">
-      <div class="challenge-head">
-        <div>
-          <p class="eyebrow on-dark" data-reveal>Industry Insight</p>
-          <h2 class="challenge-title" data-reveal style="transition-delay:.08s">
-            Animal welfare organizations face increasing
-            <span class="serif-italic gold-text">operational challenges.</span>
-          </h2>
-        </div>
-        <p class="challenge-lede" data-reveal style="transition-delay:.12s">
-          The landscape is evolving. The pressures are real. And the impact on
-          animals and communities has never been greater. The organizations that
-          thrive are the ones willing to embrace strategy, innovation, and real
-          operational change.
+    <div class="container">
+      <div class="ch-head anim">
+        <p class="label">The Challenge</p>
+        <h2>Animal welfare organizations face increasing operational challenges.</h2>
+        <p>
+          The landscape is evolving. The pressures are real. The organizations that thrive embrace
+          strategy, innovation, and real operational change.
         </p>
       </div>
-
-      <div class="challenge-grid">
-        {challenges.map((c, i) => (
-          <article class="challenge-card" data-reveal style={`transition-delay:${0.08 * i}s`}>
-            <span class="challenge-num">0{i + 1}</span>
-            <h3>{c.title}</h3>
-            <p>{c.body}</p>
-          </article>
-        ))}
-      </div>
-
-      <p class="challenge-foot" data-reveal>
-        The future of animal welfare leadership will require
-        <span class="gold-text">adaptability and vision.</span> That's where we come in.
+      {
+        challenges.map((c, i) => (
+          <div class={`ch-strip anim${i ? ` d${i}` : ""}`}>
+            <p class="ch-strip-num">{c.num}</p>
+            <p class="ch-strip-title">{c.title}</p>
+            <p class="ch-strip-desc">{c.body}</p>
+          </div>
+        ))
+      }
+      <p class="challenge-outro anim">
+        The future of animal welfare leadership will require adaptability and vision. That's where we
+        come in.
       </p>
     </div>
   </section>
 
   <!-- ============ SERVICES ============ -->
   <section class="services" id="services">
-    <div class="wrap">
-      <div class="section-head center">
-        <p class="eyebrow center" data-reveal>What We Do</p>
-        <h2 class="section-title" data-reveal style="transition-delay:.08s">
-          Six ways we strengthen <br class="br-d" />
-          <span class="serif-italic">the organizations that protect animals.</span>
-        </h2>
+    <div class="container">
+      <div class="svc-head anim">
+        <p class="label">What We Do</p>
+        <h2>Six ways we strengthen the organizations that protect animals.</h2>
+        <p>Every engagement is tailored to where your organization is today — and where it needs to go.</p>
       </div>
+      <div class="svc-grid">
+        {
+          services.map((s, i) => (
+            <div class={`svc-card anim${i % 3 ? ` d${i % 3}` : ""}`}>
+              <h3 set:html={s.title} />
+              <p set:html={s.body} />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
 
-      <div class="services-grid">
-        {services.map((s, i) => (
-          <article class="service-card" data-reveal style={`transition-delay:${0.06 * i}s`}>
-            <span class="service-icon" set:html={iconFor(s.icon)} />
-            <h3>{s.title}</h3>
-            <p>{s.body}</p>
-          </article>
-        ))}
-      </div>
+  <!-- ============ PULL QUOTE ============ -->
+  <section class="quote-sec">
+    <div class="container">
+      <blockquote class="big-quote anim">
+        People may forget specific decisions. They rarely forget how leaders made them feel.
+      </blockquote>
     </div>
   </section>
 
   <!-- ============ APPROACH ============ -->
   <section class="approach" id="approach">
-    <div class="wrap approach-inner">
-      <figure class="approach-figure" data-reveal>
-        <img src="/images/approach-real.jpg" alt="A dog gently nuzzling a cat — the ripple effect of care across animals, people, and communities" width="825" height="550" />
-      </figure>
-      <div class="approach-copy">
-        <p class="eyebrow" data-reveal>Our Approach</p>
-        <h2 class="approach-title" data-reveal style="transition-delay:.08s">
-          Strong organizations are
-          <span class="serif-italic">not built by accident.</span>
-        </h2>
-        <p data-reveal style="transition-delay:.12s">
-          They're built through intentional leadership, accountability, operational
-          clarity, and a culture that empowers people to succeed. The right
-          operational shifts create ripple effects — for animals, for people, and
-          for communities.
-        </p>
-        <ul class="approach-list">
-          <li data-reveal style="transition-delay:.16s"><strong>Clear expectations.</strong> Everyone knows what good looks like.</li>
-          <li data-reveal style="transition-delay:.22s"><strong>Consistent communication.</strong> Trust is built in the everyday.</li>
-          <li data-reveal style="transition-delay:.28s"><strong>Mission alignment.</strong> Every decision points back to the work.</li>
-        </ul>
-        <blockquote class="approach-quote" data-reveal style="transition-delay:.32s">
-          "People may forget specific decisions. They rarely forget how leaders
-          made them feel."
-        </blockquote>
-      </div>
+    <div class="approach-copy anim">
+      <p class="label">Our Approach</p>
+      <h2>Strong organizations are not built by accident.</h2>
+      <ul class="approach-bullets">
+        <li><strong>Clear expectations.</strong> Everyone knows what good looks like.</li>
+        <li><strong>Consistent communication.</strong> Trust is built in the everyday.</li>
+        <li><strong>Mission alignment.</strong> Every decision points back to the work.</li>
+      </ul>
+      <blockquote class="approach-quote">
+        Built through intentional leadership, accountability, operational clarity, and a culture that
+        empowers people to succeed.
+      </blockquote>
+    </div>
+    <!-- TEMP IMAGE: placeholder, pending final select -->
+    <div class="approach-img">
+      <img
+        src="/images/approach-real.jpg"
+        alt="A dog nuzzling a cat — the ripple effect of care across animals, people, and communities"
+        loading="lazy"
+        width="825"
+        height="550"
+      />
     </div>
   </section>
 
-  <!-- ============ ABOUT / CREDIBILITY ============ -->
+  <!-- ============ ABOUT ============ -->
   <section class="about" id="about">
-    <div class="wrap about-inner">
-      <div class="about-copy">
-        <p class="eyebrow on-dark" data-reveal>About Caldwell</p>
-        <h2 class="about-title" data-reveal style="transition-delay:.08s">
-          Leadership isn't just about strategy.
-          <span class="serif-italic gold-text">It's about people.</span>
-        </h2>
-        <p data-reveal style="transition-delay:.12s">
-          Caldwell Humane &amp; Animal Services Consultants was founded on a simple
-          belief: that the animals and communities we care about are best served by
-          organizations that are healthy, well-led, and built to last.
-        </p>
-        <!-- TODO(Eddie): replace with founder's real bio + a headshot after you talk to him. -->
-        <p class="about-placeholder" data-reveal style="transition-delay:.16s">
-          [Founder bio goes here — years in animal welfare, the roles held, the
-          organizations turned around, and the moment that started it all. This is
-          the credibility anchor for the whole page; keep it specific and human.]
-        </p>
-        <a href="#contact" class="btn btn--gold" data-reveal style="transition-delay:.2s">
-          Start the Conversation <span class="arrow">&rarr;</span>
-        </a>
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-copy anim">
+          <p class="label">About Caldwell</p>
+          <h2>Leadership built from the ground up — and proven in the field.</h2>
+          <p>
+            Caldwell Humane &amp; Animal Services Consultants was founded on a simple belief: that the
+            animals and communities we care about are best served by organizations that are healthy,
+            well-led, and built to last.
+          </p>
+          <p>
+            Our founder brings 20+ years of experience driving operational excellence, organizational
+            transformation, and strategic growth across municipal government, animal welfare,
+            procurement, education, and finance. This is leadership that has been tested at every level
+            of the field — and the results to show for it.
+          </p>
+          <p>
+            This practice exists to bring that caliber of expertise directly to the organizations doing
+            the hardest and most important work.
+          </p>
+          <a href="#contact" class="about-link">Start the Conversation →</a>
+        </div>
+        <div class="founder-card anim d1">
+          <img
+            class="founder-img"
+            src="/images/antonio.png"
+            alt="Antonio Caldwell, Founder & Principal Consultant"
+            loading="lazy"
+            width="600"
+            height="750"
+          />
+          <div class="founder-info">
+            <p class="founder-name">Dr. Antonio L. Caldwell, DBA, CAWA</p>
+            <p class="founder-title">Founder &amp; Principal Consultant</p>
+            <p class="founder-cred">
+              20+ years · Animal Welfare · Municipal Government<br />Organizational Transformation ·
+              Strategic Growth
+            </p>
+            <a
+              class="founder-link"
+              href={LINKEDIN_FOUNDER}
+              target="_blank"
+              rel="noopener"
+              aria-label="Antonio Caldwell on LinkedIn"
+            >
+              Connect on LinkedIn →
+            </a>
+          </div>
+        </div>
       </div>
-      <aside class="about-stats" data-reveal style="transition-delay:.14s">
-        <!-- TODO(Eddie): swap these for REAL, verifiable numbers once confirmed. No fabricated proof. -->
-        <div class="stat"><span class="stat-k">[ — ]</span><span class="stat-l">Years in animal welfare leadership</span></div>
-        <div class="stat"><span class="stat-k">[ — ]</span><span class="stat-l">Organizations supported</span></div>
-        <div class="stat"><span class="stat-k">[ — ]</span><span class="stat-l">Grant dollars secured</span></div>
-        <p class="about-note">Numbers are placeholders until verified — Caldwell does not publish proof it can't back up.</p>
-      </aside>
+      <div class="about-stats anim">
+        {
+          stats.map((s) => (
+            <div class="astat">
+              <p class="astat-lbl">{s.lbl.split(" ")[0]}</p>
+              <p class="astat-val">{s.val}<span class="stat-mark">**</span></p>
+              <p class="astat-desc">{s.desc}</p>
+            </div>
+          ))
+        }
+      </div>
+      <p class="stat-note about-stats-note">
+        <span class="stat-mark">**</span> Representative figures — verification in progress.
+      </p>
     </div>
   </section>
 
   <!-- ============ CTA ============ -->
-  <section class="cta" id="contact">
-    <div class="cta-grain" aria-hidden="true"></div>
-    <div class="wrap cta-inner">
-      <p class="eyebrow on-dark center" data-reveal>Let's Begin</p>
-      <h2 class="cta-title" data-reveal style="transition-delay:.08s">
-        Ready to build a
-        <span class="serif-italic gold-text">stronger organization?</span>
-      </h2>
-      <p class="cta-lede" data-reveal style="transition-delay:.12s">
-        Tell us where your organization is today. We'll show you what's possible —
-        and the practical next step to get there.
+  <section class="cta-sec" id="contact">
+    <div class="container">
+      <h2>Ready to build a stronger organization?</h2>
+      <p>
+        Tell us where your organization is today. We'll show you what's possible — and the practical
+        next step to get there.
       </p>
-      <div class="cta-actions" data-reveal style="transition-delay:.16s">
-        <a href="mailto:hello@caldwellhumaneconsultants.com" class="btn btn--gold">
-          Book a Consultation <span class="arrow">&rarr;</span>
-        </a>
-        <a href="#services" class="btn btn--ghost-light">See How We Help</a>
+      <div class="cta-btns">
+        <a href={`mailto:${EMAIL}`} class="btn-navy">Book a Consultation →</a>
+        <a href="#services" class="btn-outline-navy">See How We Help</a>
       </div>
     </div>
   </section>
 
   <!-- ============ FOOTER ============ -->
   <footer class="site-footer">
-    <div class="wrap footer-inner">
-      <div class="footer-brand">
-        <span class="wordmark-name footer-name">Caldwell</span>
-        <span class="footer-sub">Humane &amp; Animal Services Consultants LLC</span>
-        <p class="footer-tag">Stronger Organizations. Safer Communities. More Lives Saved.</p>
-      </div>
-      <div class="footer-cols">
-        <div>
+    <div class="container">
+      <div class="ft-top">
+        <div class="ft-brand">
+          <a href="#hero" class="wordmark">
+            <span class="wm-main">CALDWELL</span>
+            <span class="wm-sub">Humane &amp; Animal Services Consultants</span>
+          </a>
+          <p class="ft-tagline">Stronger Organizations. Safer Communities. More Lives Saved.</p>
+        </div>
+        <div class="ft-col">
           <h4>Explore</h4>
-          <a href="#challenge">The Challenge</a>
-          <a href="#services">Services</a>
-          <a href="#approach">Approach</a>
-          <a href="#about">About</a>
+          <ul>
+            <li><a href="#challenge">The Challenge</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#approach">Approach</a></li>
+            <li><a href="#about">About</a></li>
+          </ul>
         </div>
-        <div>
+        <div class="ft-col">
           <h4>Connect</h4>
-          <a href="mailto:hello@caldwellhumaneconsultants.com">Email Us</a>
-          <a href="https://caldwellhumaneconsultants.com">Website</a>
-          <span class="footer-muted">[LinkedIn link]</span>
+          <ul>
+            <li><a href={`mailto:${EMAIL}`}>Email Us</a></li>
+            <li><a href={LINKEDIN_COMPANY} target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="#contact">Book a Consultation</a></li>
+          </ul>
         </div>
       </div>
-    </div>
-    <div class="wrap footer-base">
-      <span>&copy; {new Date().getFullYear()} Caldwell Humane &amp; Animal Services Consultants LLC.</span>
-      <span class="footer-muted">Built with purpose.</span>
+      <div class="ft-bottom">
+        <p class="ft-copy">
+          © {new Date().getFullYear()} Caldwell Humane &amp; Animal Services Consultants LLC. Built with
+          purpose.
+        </p>
+      </div>
     </div>
   </footer>
 </BaseLayout>
-
-<style>
-  /* ---------- HEADER ---------- */
-  .site-header {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    transition: background .4s, box-shadow .4s, padding .4s;
-    padding-block: 1.1rem;
-  }
-  .site-header.is-stuck {
-    background: rgba(244, 241, 231, 0.86);
-    backdrop-filter: blur(12px);
-    box-shadow: 0 1px 0 var(--line);
-    padding-block: 0.7rem;
-  }
-  .header-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-  }
-  .wordmark { display: flex; flex-direction: column; line-height: 1; }
-  .wordmark-name {
-    font-family: var(--display);
-    font-weight: 600;
-    font-size: 1.5rem;
-    letter-spacing: 0.14em;
-    color: var(--navy);
-    text-transform: uppercase;
-  }
-  .wordmark-sub {
-    font-family: var(--sans);
-    font-size: 0.6rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--olive);
-    margin-top: 0.32rem;
-  }
-  .nav { display: flex; gap: 2rem; }
-  .nav a {
-    font-size: 0.86rem;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    color: var(--ink-soft);
-    position: relative;
-    padding-block: 0.3rem;
-  }
-  .nav a::after {
-    content: ""; position: absolute; left: 0; bottom: 0;
-    width: 0; height: 1.5px; background: var(--gold);
-    transition: width .3s cubic-bezier(.2,.8,.2,1);
-  }
-  .nav a:hover { color: var(--navy); }
-  .nav a:hover::after { width: 100%; }
-  .header-cta { padding: 0.7rem 1.3rem; font-size: 0.84rem; }
-
-  /* ---------- HERO ---------- */
-  .hero {
-    position: relative;
-    background:
-      radial-gradient(120% 80% at 85% 0%, rgba(110,122,55,0.10), transparent 55%),
-      radial-gradient(90% 70% at 0% 100%, rgba(198,161,75,0.10), transparent 50%),
-      var(--cream);
-    padding-block: clamp(2.5rem, 6vw, 5rem) clamp(3rem, 7vw, 6rem);
-    overflow: hidden;
-  }
-  .hero-grain {
-    position: absolute; inset: 0; pointer-events: none; opacity: .5;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-  }
-  .hero-inner {
-    position: relative;
-    display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
-    gap: clamp(2rem, 5vw, 4.5rem);
-    align-items: center;
-  }
-  .hero-title {
-    font-size: clamp(2.6rem, 6vw, 4.6rem);
-    margin-top: 1.4rem;
-    letter-spacing: -0.02em;
-  }
-  .accent-line { position: relative; color: var(--olive-deep); white-space: nowrap; }
-  .accent-line::after {
-    content: ""; position: absolute; left: 0; right: 0; bottom: 0.06em;
-    height: 0.14em; background: var(--gold); opacity: .42; border-radius: 2px;
-  }
-  .hero-lede {
-    font-size: clamp(1.05rem, 1.5vw, 1.22rem);
-    color: var(--ink-soft);
-    max-width: 38ch;
-    margin-top: 1.6rem;
-  }
-  .hero-cta { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 2.1rem; }
-  .hero-foot {
-    margin-top: 2rem;
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 1.05rem;
-    color: var(--navy);
-    display: flex; align-items: center; gap: 0.6rem;
-  }
-  .paw { font-style: normal; filter: sepia(1) saturate(2) hue-rotate(5deg); opacity: .8; }
-
-  .hero-figure { position: relative; margin: 0; }
-  .hero-photo {
-    position: relative;
-    border-radius: 4px 4px 120px 4px;
-    overflow: hidden;
-    box-shadow: var(--shadow-card);
-    aspect-ratio: 4 / 5;
-    border: 1px solid rgba(22,36,63,0.08);
-  }
-  .hero-photo::after {
-    content: ""; position: absolute; inset: 0;
-    background: linear-gradient(160deg, transparent 55%, rgba(22,36,63,0.32));
-  }
-  .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
-  .hero-badge {
-    position: absolute;
-    left: -1.4rem; bottom: 1.8rem;
-    background: var(--navy);
-    color: var(--cream);
-    padding: 1.1rem 1.4rem;
-    display: flex; flex-direction: column; gap: 0.25rem;
-    box-shadow: var(--shadow-card);
-    border-left: 3px solid var(--gold);
-  }
-  .hero-badge-k { font-family: var(--serif); font-style: italic; font-size: 1.05rem; }
-  .hero-badge-k:nth-child(2) { color: var(--gold-soft); }
-
-  /* ---------- VALUES STRIP ---------- */
-  .values-strip {
-    background: var(--navy);
-    color: var(--cream);
-    overflow: hidden;
-    padding-block: 0.95rem;
-    border-block: 1px solid var(--line-light);
-  }
-  .values-track { display: flex; width: max-content; animation: marquee 30s linear infinite; }
-  .values-set {
-    display: flex; align-items: center; gap: 2.2rem; padding-right: 2.2rem;
-    font-family: var(--display);
-    text-transform: uppercase;
-    letter-spacing: 0.26em;
-    font-size: 0.8rem;
-    font-weight: 500;
-    white-space: nowrap;
-  }
-  .values-set .dot { font-size: 0.7rem; opacity: .7; }
-  @keyframes marquee { to { transform: translateX(-50%); } }
-  .values-strip:hover .values-track { animation-play-state: paused; }
-
-  /* ---------- THE CHALLENGE ---------- */
-  .challenge {
-    background:
-      radial-gradient(100% 120% at 100% 0%, rgba(110,122,55,0.18), transparent 50%),
-      var(--navy);
-    color: var(--cream);
-    padding-block: var(--section-y);
-  }
-  .challenge-head {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: clamp(1.5rem, 4vw, 4rem);
-    align-items: end;
-    margin-bottom: clamp(2.5rem, 5vw, 4rem);
-  }
-  .challenge-title {
-    color: var(--cream);
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    margin-top: 1.2rem;
-  }
-  .challenge-lede { color: rgba(244,241,231,0.78); font-size: 1.05rem; }
-  .gold-text { color: var(--gold-soft); }
-  .challenge-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: var(--line-light);
-    border: 1px solid var(--line-light);
-  }
-  .challenge-card {
-    background: var(--navy);
-    padding: 2rem 1.6rem;
-    transition: background .4s;
-  }
-  .challenge-card:hover { background: var(--navy-soft); }
-  .challenge-num {
-    font-family: var(--display);
-    color: var(--gold);
-    font-size: 0.95rem;
-    letter-spacing: 0.1em;
-  }
-  .challenge-card h3 { color: var(--cream); font-size: 1.25rem; margin: 1rem 0 0.6rem; }
-  .challenge-card p { color: rgba(244,241,231,0.72); font-size: 0.94rem; margin: 0; }
-  .challenge-foot {
-    margin-top: clamp(2.5rem, 5vw, 4rem);
-    font-family: var(--serif);
-    font-size: clamp(1.3rem, 2.4vw, 1.9rem);
-    line-height: 1.4;
-    max-width: 26ch;
-    color: var(--cream);
-  }
-
-  /* ---------- SECTION HEAD ---------- */
-  .section-head { margin-bottom: clamp(2.5rem, 5vw, 4rem); }
-  .section-head.center { text-align: center; display: flex; flex-direction: column; align-items: center; }
-  .section-title { font-size: clamp(1.9rem, 3.6vw, 3rem); margin-top: 1.1rem; }
-
-  /* ---------- SERVICES ---------- */
-  .services { background: var(--cream); padding-block: var(--section-y); }
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.4rem;
-  }
-  .service-card {
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: 3px;
-    padding: 2.2rem 2rem 2.4rem;
-    transition: transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s, border-color .4s;
-    position: relative;
-    overflow: hidden;
-  }
-  .service-card::before {
-    content: ""; position: absolute; left: 0; top: 0; height: 3px; width: 0;
-    background: var(--gold); transition: width .45s cubic-bezier(.2,.8,.2,1);
-  }
-  .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-card); border-color: transparent; }
-  .service-card:hover::before { width: 100%; }
-  .service-icon {
-    display: inline-flex;
-    width: 56px; height: 56px;
-    align-items: center; justify-content: center;
-    border-radius: 50%;
-    background: rgba(110,122,55,0.12);
-    color: var(--olive-deep);
-    margin-bottom: 1.4rem;
-  }
-  .service-icon :global(svg) { width: 26px; height: 26px; }
-  .service-card h3 { font-size: 1.4rem; margin-bottom: 0.7rem; }
-  .service-card p { color: var(--ink-soft); font-size: 0.96rem; margin: 0; }
-
-  /* ---------- APPROACH ---------- */
-  .approach { background: var(--cream-warm); padding-block: var(--section-y); }
-  .approach-inner {
-    display: grid;
-    grid-template-columns: 0.85fr 1.15fr;
-    gap: clamp(2rem, 5vw, 4.5rem);
-    align-items: center;
-  }
-  .approach-figure { margin: 0; }
-  .approach-figure img {
-    border-radius: 4px;
-    box-shadow: var(--shadow-card);
-    border: 1px solid var(--line);
-  }
-  .approach-title { font-size: clamp(1.9rem, 3.4vw, 2.9rem); margin: 1.1rem 0 1.3rem; }
-  .approach-copy p { color: var(--ink-soft); font-size: 1.05rem; }
-  .approach-list { list-style: none; padding: 0; margin: 1.6rem 0 0; display: grid; gap: 0.9rem; }
-  .approach-list li {
-    padding-left: 1.6rem; position: relative; color: var(--ink-soft); font-size: 1rem;
-  }
-  .approach-list li::before {
-    content: ""; position: absolute; left: 0; top: 0.62em;
-    width: 8px; height: 8px; border-radius: 50%; background: var(--olive);
-  }
-  .approach-list strong { color: var(--navy); font-weight: 600; }
-  .approach-quote {
-    margin: 2rem 0 0;
-    padding: 1.4rem 0 0.2rem 1.6rem;
-    border-left: 3px solid var(--gold);
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 1.25rem;
-    line-height: 1.45;
-    color: var(--navy);
-  }
-
-  /* ---------- ABOUT ---------- */
-  .about {
-    background:
-      radial-gradient(90% 120% at 0% 0%, rgba(198,161,75,0.14), transparent 45%),
-      var(--navy-deep);
-    color: var(--cream);
-    padding-block: var(--section-y);
-  }
-  .about-inner {
-    display: grid;
-    grid-template-columns: 1.3fr 0.7fr;
-    gap: clamp(2rem, 5vw, 4.5rem);
-    align-items: center;
-  }
-  .about-title { color: var(--cream); font-size: clamp(1.9rem, 3.6vw, 3rem); margin: 1.1rem 0 1.4rem; }
-  .about-copy p { color: rgba(244,241,231,0.8); font-size: 1.06rem; }
-  .about-placeholder {
-    border: 1px dashed rgba(244,241,231,0.3);
-    padding: 1.1rem 1.3rem;
-    border-radius: 3px;
-    font-style: italic;
-    color: rgba(244,241,231,0.6) !important;
-    font-size: 0.95rem !important;
-  }
-  .about-copy .btn { margin-top: 1.8rem; }
-  .about-stats {
-    background: rgba(244,241,231,0.04);
-    border: 1px solid var(--line-light);
-    border-radius: 4px;
-    padding: 2rem 1.8rem;
-    display: grid;
-    gap: 1.5rem;
-  }
-  .stat { display: flex; flex-direction: column; gap: 0.3rem; }
-  .stat-k { font-family: var(--display); font-size: 2rem; color: var(--gold-soft); letter-spacing: 0.05em; }
-  .stat-l { font-size: 0.86rem; color: rgba(244,241,231,0.7); }
-  .about-note { font-size: 0.74rem !important; color: rgba(244,241,231,0.45) !important; margin: 0.4rem 0 0 !important; line-height: 1.4; }
-
-  /* ---------- CTA ---------- */
-  .cta {
-    position: relative;
-    background:
-      radial-gradient(80% 140% at 50% 0%, rgba(110,122,55,0.25), transparent 60%),
-      var(--navy);
-    color: var(--cream);
-    padding-block: clamp(4.5rem, 9vw, 7.5rem);
-    text-align: center;
-    overflow: hidden;
-  }
-  .cta-grain {
-    position: absolute; inset: 0; pointer-events: none; opacity: .5;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-  }
-  .cta-inner { position: relative; display: flex; flex-direction: column; align-items: center; }
-  .cta-title { color: var(--cream); font-size: clamp(2.2rem, 5vw, 4rem); margin-top: 1.2rem; }
-  .cta-lede { color: rgba(244,241,231,0.8); font-size: 1.15rem; max-width: 46ch; margin-top: 1.3rem; }
-  .cta-actions { display: flex; flex-wrap: wrap; gap: 0.9rem; justify-content: center; margin-top: 2.3rem; }
-
-  /* ---------- FOOTER ---------- */
-  .site-footer { background: var(--navy-deep); color: var(--cream); padding-top: clamp(3rem, 6vw, 4.5rem); }
-  .footer-inner {
-    display: grid;
-    grid-template-columns: 1.4fr 1fr;
-    gap: clamp(2rem, 5vw, 4rem);
-    padding-bottom: 2.5rem;
-    border-bottom: 1px solid var(--line-light);
-  }
-  .footer-name { font-size: 1.8rem; color: var(--cream); }
-  .footer-sub { display: block; font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--olive-soft); margin-top: 0.5rem; }
-  .footer-tag { font-family: var(--serif); font-style: italic; color: rgba(244,241,231,0.7); margin-top: 1rem; max-width: 30ch; }
-  .footer-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-  .footer-cols h4 { font-family: var(--sans); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--gold-soft); margin-bottom: 1rem; }
-  .footer-cols a, .footer-muted { display: block; font-size: 0.92rem; color: rgba(244,241,231,0.75); margin-bottom: 0.6rem; transition: color .3s; }
-  .footer-cols a:hover { color: var(--cream); }
-  .footer-muted { color: rgba(244,241,231,0.4); }
-  .footer-base {
-    display: flex; justify-content: space-between; align-items: center;
-    padding-block: 1.5rem; font-size: 0.8rem; color: rgba(244,241,231,0.5);
-  }
-
-  /* ---------- RESPONSIVE ---------- */
-  @media (max-width: 980px) {
-    .hero-inner { grid-template-columns: 1fr; }
-    .hero-figure { max-width: 460px; margin-top: 1rem; }
-    .challenge-head { grid-template-columns: 1fr; }
-    .challenge-grid { grid-template-columns: repeat(2, 1fr); }
-    .services-grid { grid-template-columns: repeat(2, 1fr); }
-    .approach-inner { grid-template-columns: 1fr; }
-    .approach-figure { max-width: 480px; order: 2; }
-    .about-inner { grid-template-columns: 1fr; }
-  }
-  @media (max-width: 720px) {
-    .nav { display: none; }
-    .header-cta { display: none; }
-    .challenge-grid { grid-template-columns: 1fr; }
-    .services-grid { grid-template-columns: 1fr; }
-    .footer-inner { grid-template-columns: 1fr; }
-    .hero-badge { left: 0; }
-    .br-d { display: none; }
-  }
-</style>

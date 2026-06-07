@@ -8,14 +8,14 @@ interface Props {
 
 const {
   title = "Caldwell Humane & Animal Services Consultants",
-  description = "Strengthening animal welfare organizations through leadership, strategy, and community impact. Stronger organizations. Safer communities. More lives saved.",
+  description =
+    "Strengthening animal welfare organizations through leadership, strategy, and community impact. Stronger organizations. Safer communities. More lives saved.",
 } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <script is:inline>document.documentElement.classList.add("js");</script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
@@ -25,7 +25,7 @@ const {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
       rel="stylesheet"
     />
 
@@ -39,30 +39,38 @@ const {
     <slot />
 
     <script>
-      // Scroll reveal
-      const els = document.querySelectorAll("[data-reveal]");
-      const io = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting) {
-              e.target.classList.add("in");
-              io.unobserve(e.target);
-            }
-          });
-        },
-        { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
-      );
-      els.forEach((el) => io.observe(el));
+      // Scroll-in animations (.anim -> .in)
+      if ("IntersectionObserver" in window) {
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add("in");
+                obs.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.08, rootMargin: "0px 0px -32px 0px" }
+        );
+        document.querySelectorAll(".anim").forEach((el) => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight * 0.92) el.classList.add("in");
+          else obs.observe(el);
+        });
+      } else {
+        document.querySelectorAll(".anim").forEach((el) => el.classList.add("in"));
+      }
 
-      // Sticky header state
-      const header = document.querySelector("[data-header]");
-      if (header) {
-        const onScroll = () => {
-          if (window.scrollY > 24) header.classList.add("is-stuck");
-          else header.classList.remove("is-stuck");
-        };
-        window.addEventListener("scroll", onScroll, { passive: true });
-        onScroll();
+      // Nav shadow on scroll
+      const nav = document.getElementById("main-nav");
+      if (nav) {
+        window.addEventListener(
+          "scroll",
+          () => {
+            nav.classList.toggle("scrolled", window.scrollY > 10);
+          },
+          { passive: true }
+        );
       }
     </script>
   </body>
